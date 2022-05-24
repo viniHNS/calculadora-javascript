@@ -5,10 +5,11 @@ var resultado = ''
 
 function insert(num)
 {
-   if (operador == '')
+   if (operador == '' && resultado == '')
    {
       numero += num.toString()
       document.querySelector('#tela').innerHTML = numero
+      
    }
 
    else 
@@ -38,27 +39,47 @@ function final()
    else{
       switch (operador) {
          case '+':
-            resultado = numero + numero2
+            if(resultado == ''){
+               resultado = numero + numero2 
+            }
+            else {
+               resultado += numero2
+            }
             document.querySelector('#tela').innerHTML = resultado
             break;
    
          case '-':
-            resultado = numero - numero2
+            if(resultado == ''){
+               resultado = numero - numero2
+            }
+            else{
+               resultado -= numero2
+            }
             document.querySelector('#tela').innerHTML = resultado
             break;
    
          case '/':
-            resultado = numero / numero2
+            if(resultado == ''){
+               resultado = numero / numero2
+            }
+            else{
+               resultado /= numero2
+            }
             document.querySelector('#tela').innerHTML =  resultado
             break;
    
          case 'x':
-            resultado = numero * numero2
+            if(resultado == ''){
+               resultado = numero * numero2
+            }
+            else {
+               resultado *= numero2
+            }
+           
             document.querySelector('#tela').innerHTML = resultado
             break;
    
          default:
-      
             break;
       }
    }
@@ -75,7 +96,16 @@ function limpar()
    numero = ''
    numero2 = ''
    resultado = ''
-
-
+   operador = ''
 }
 
+setInterval(horas, 1000)
+
+function horas(){
+   const d = new Date()
+
+   document.querySelector("#horas").innerHTML = d.toLocaleTimeString()
+   
+
+   
+}
